@@ -1,0 +1,17 @@
+<div class="task-item" [class.completed]="task.completed">
+  <input
+    class="checkbox"
+    type="checkbox"
+    [checked]="task.completed"
+    (change)="onToggleComplete()"
+  />
+  <span>{{ task.title }}</span>
+
+  <div class="matIcon">
+    @if (!task.completed){
+    <mat-icon style="color: blue" (click)="onEdit()">edit</mat-icon>
+    }
+    <mat-icon style="color: darkred" (click)="onDelete()">delete</mat-icon>
+  </div>
+  <!-- <button (click)="onDelete()">Borrar</button> -->
+</div>
