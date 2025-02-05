@@ -1,0 +1,27 @@
+/* //REFACTORIZADO */
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans");
+h1,
+h3 {
+  font-family: "Josefin Sans";
+  text-align: center;
+}
+.container {
+  max-width: 600px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+}
+
+.task-list {
+  margin-top: 20px;
+}
+.newListTask {
+  text-align: center;
+}
+
+.newTask {
+  margin-right: 10px;
+  text-align: center;
+  height: 35px;
+  width: 250px;
+  border-radius: 7px;
+}

@@ -5,7 +5,10 @@
     [checked]="task.completed"
     (change)="onToggleComplete()"
   />
-  <span>{{ task.title }}</span>
+  <!-- Agregamos evento para navegar a los detalles de la tarea -->
+  <span style="cursor: pointer" (click)="goToDetail(task)">{{
+    task.title
+  }}</span>
 
   <div class="matIcon">
     @if (!task.completed){

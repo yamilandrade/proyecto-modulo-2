@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Task } from '../task';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-task-item',
@@ -9,6 +10,7 @@ import { Task } from '../task';
   styleUrl: './task-item.component.css',
 })
 export class TaskItemComponent {
+  constructor(private router: Router) {}
   @Input() task: Task = {
     id: 0,
     title: '',
@@ -27,5 +29,9 @@ export class TaskItemComponent {
   }
   onEdit() {
     this.editTask.emit(this.task?.id);
+  }
+  goToDetail(task: Task) {
+    console.log(task);
+    this.router.navigate(['/detail/' + task.id]);
   }
 }

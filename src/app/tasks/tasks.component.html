@@ -1,0 +1,58 @@
+<div class="container">
+  <h3>Proyecto Módulo II</h3>
+  <form [formGroup]="myForm">
+    <div class="newListTask">
+      <input
+        class="newTask"
+        formControlName="title"
+        name="title"
+        type="text"
+        placeholder="Agregar nueva tarea..."
+      />
+
+      @if (myForm.get('title')?.invalid) { @if (
+      myForm.get('title')?.hasError('required') ) {
+      <small style="display: block; color: red">Campo Obligatorio</small>
+      } @if ( myForm.get('title')?.hasError('minlength') ) {
+      <small style="display: block; color: red">Mínimo 4 caracteres</small>
+      } }
+
+      <!-- Reemplazando formodule por reactive -->
+      <!-- <input
+        class="newTask"
+        [(ngModel)]="taskInput"
+        type="text"
+        placeholder="Agregar nueva tarea..."
+      /> -->
+      @if (statusEdit) {
+      <button
+        style="color: forestgreen"
+        mat-stroked-button
+        (click)="updateTask()"
+        [disabled]="myForm.invalid"
+      >
+        Editar Tarea
+      </button>
+      } @else {
+      <button
+        mat-stroked-button
+        (click)="addTask()"
+        [disabled]="myForm.invalid"
+      >
+        Agregar Tarea
+      </button>
+      }
+    </div>
+  </form>
+
+  <div class="task-list">
+    @for (task of tasks; track task.id) {
+    <app-task-item
+      [task]="task"
+      (completeTask)="toggleComplete($event)"
+      (deleteTask)="deleteTask($event)"
+      (editTask)="editTask($event)"
+    />
+    }
+  </div>
+</div>
