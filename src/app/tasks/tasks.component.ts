@@ -49,6 +49,7 @@ export class TasksComponent {
     title: '',
     completed: false,
   };
+  loading: boolean = false;
 
   constructor(
     private _FormBuilder: FormBuilder,
@@ -71,12 +72,12 @@ export class TasksComponent {
   //   );
   // }
   getToDo() {
-    //const id = Math.floor(Math.random() * 254); //obtenemos una tarea aleatoria de la API
-    const id = 300;
+    this.loading = true;
+    const id = Math.floor(Math.random() * 254); //obtenemos una tarea aleatoria de la API
+    //const id = 300;
     this.apiToDosService.getToDo(id).subscribe((data: any) => {
       this.myForm.patchValue({ title: data.todo });
-      console.log(data.todo);
-      //this.tasks = data;
+      this.loading = false;
     });
   }
   getTasks() {
