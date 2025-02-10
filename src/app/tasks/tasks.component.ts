@@ -23,6 +23,7 @@ import {
 import { TaskItemComponent } from '../task-item/task-item.component';
 import { Task } from '../task';
 import { TaskServiceService } from '../task-service.service';
+import { ApiToDosService } from '../api-to-dos.service';
 
 @Component({
   selector: 'app-tasks',
@@ -51,7 +52,8 @@ export class TasksComponent {
 
   constructor(
     private _FormBuilder: FormBuilder,
-    private taskService: TaskServiceService
+    private taskService: TaskServiceService,
+    private apiToDosService: ApiToDosService
   ) {
     this.myForm = this._FormBuilder.group({
       // declaramos que el campo es obligatorio, no vacio, lingitud mínima de 4 caracteres
@@ -68,7 +70,15 @@ export class TasksComponent {
   //     (error) => console.error('Error fetching data:', error)
   //   );
   // }
-
+  getToDo() {
+    //const id = Math.floor(Math.random() * 254); //obtenemos una tarea aleatoria de la API
+    const id = 300;
+    this.apiToDosService.getToDo(id).subscribe((data: any) => {
+      this.myForm.patchValue({ title: data.todo });
+      console.log(data.todo);
+      //this.tasks = data;
+    });
+  }
   getTasks() {
     this.tasks = this.taskService.getTasks();
   }
