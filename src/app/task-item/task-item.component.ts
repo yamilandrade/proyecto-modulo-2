@@ -31,7 +31,6 @@ export class TaskItemComponent {
     this.editTask.emit(this.task?.id);
   }
   goToDetail(task: Task) {
-    console.log(task);
     this.router.navigate(['/detail/' + task.id]);
   }
 }
